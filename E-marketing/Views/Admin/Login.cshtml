@@ -1,0 +1,103 @@
+﻿@model E_marketing.Models.tbl_admin
+@{
+    Layout = null;
+}
+
+
+
+<meta name="viewport" content="width=device-width" />
+<title>@ViewBag.Title</title>
+<link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/Site.css")" />
+<style>
+    body {
+/*        save it so that I will get it fast when required
+*/        font-family: Arial, sans-serif;
+        background-image: url('@Url.Content("~/Content/Images/Image02.png")');
+        background-size: cover; /* Ensures the image covers the entire background */
+        background-position: center; /* Centers the image */
+        background-repeat: no-repeat; /* Prevents the image from repeating */
+        background-attachment: fixed; /* Keeps the background image fixed during scrolling */
+       
+        
+        background-color: #f7f7f7;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .login-container {
+        background: white;
+        padding: 2em;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        cursor: pointer;
+        width: 100%;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+</style>
+    
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @*@Html.LabelFor(m => m.Username)
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", placeholder = "Username" })
+                    @Html.ValidationMessageFor(m => m.Username)*@
+                @Html.TextBoxFor(x => x.ad_username, new { @class = "form-control", @placeholder = "Username" })
+            </div>
+
+            <div class="form-group">
+                @*@Html.LabelFor(m => m.Password)
+                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                    @Html.ValidationMessageFor(m => m.Password)*@
+                @Html.TextBoxFor(x => x.ad_password, new { @class = "form-control", @placeholder = "Password" })
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary btn-block" />
+            </div>
+
+
+            <div class="form-group">
+                @*<p id="para"> Don't have an account?<a href="signUp.aspx"> Register now</a></p>*@
+                <p style="color:red">@ViewBag.error</p>
+
+            </div>
+        }
+    </div>
+</body>
